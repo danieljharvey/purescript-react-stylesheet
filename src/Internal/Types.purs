@@ -1,7 +1,7 @@
 module React.Stylesheet.Internal.Types where
 
 import React as React
-import PursUI
+import Stylesheet
 
 type StyleRenderMethod props localState 
   = (

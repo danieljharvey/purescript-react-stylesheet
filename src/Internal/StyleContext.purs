@@ -3,7 +3,7 @@ module React.Stylesheet.Internal.StyleContext where
 import Data.Maybe (Maybe(..))
 import Data.Symbol (class IsSymbol, SProxy)
 import React as React
-import PursUI (PursUI)
+import Stylesheet (Stylesheet)
 import React.Stylesheet.Internal.Types
 import React.Stylesheet.Internal.Provider (styleProvider)
 import React.Stylesheet.Internal.Consumer (styleConsumer)
@@ -16,7 +16,7 @@ createStyleContext
   => SProxy label
   -> StyleContext label
 createStyleContext label =
-  let myContext = React.createContext (Nothing :: Maybe (PursUI label))
+  let myContext = React.createContext (Nothing :: Maybe (Stylesheet label))
   in  { provider : styleProvider myContext
       , consumer : styleConsumer myContext
       }

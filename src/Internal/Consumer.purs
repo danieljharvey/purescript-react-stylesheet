@@ -7,7 +7,7 @@ import Data.Maybe (Maybe(..))
 import Data.Symbol (class IsSymbol)
 
 import React as React
-import PursUI (CSSRuleSet, PursUI, addStyle)
+import Stylesheet (CSSRuleSet, Stylesheet, addStyle)
 
 import React.Stylesheet.Internal.Types
 
@@ -16,7 +16,7 @@ import React.Stylesheet.Internal.Types
 styleConsumer
   :: forall props label localState
    . IsSymbol label
-  => React.Context (Maybe (PursUI label))
+  => React.Context (Maybe (Stylesheet label))
   -> props
   -> localState
   -> CSSRuleSet props

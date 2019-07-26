@@ -27,7 +27,7 @@ let additions =
         , "unordered-collections"
         , "cssom"
         ]
-        "../purs-cssom"
+        "../purescript-stylesheet"
         "v0.0.1"
     }
 
