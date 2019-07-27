@@ -27,7 +27,7 @@ let additions =
         , "unordered-collections"
         , "cssom"
         ]
-        "../purescript-stylesheet"
+        "https://github.com/danieljharvey/purescript-stylesheet.git"
         "v0.0.1"
     }
 
