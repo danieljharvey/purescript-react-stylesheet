@@ -1,10 +1,4 @@
-module Main where
+module React.Stylesheet (module Internal) where
 
-import Prelude
-
-import Effect (Effect)
-import Effect.Console (log)
-
-main :: Effect Unit
-main = do
-  log "🍝"
+import React.Stylesheet.Internal.Types as Internal
+import React.Stylesheet.Internal.StyleContext as Internal
