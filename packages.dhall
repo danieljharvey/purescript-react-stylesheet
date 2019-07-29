@@ -28,7 +28,7 @@ let additions =
         , "cssom"
         ]
         "https://github.com/danieljharvey/purescript-stylesheet.git"
-        "v0.0.1"
+        "v0.0.2"
     }
 
 
