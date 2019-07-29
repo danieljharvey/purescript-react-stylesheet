@@ -1,6 +1,7 @@
 module React.Stylesheet.Internal.Types where
 
 import React as React
+import React.DOM.Props as Props
 import Stylesheet
 
 type StyleRenderMethod props localState 
@@ -26,124 +27,133 @@ type StyleConsumer
 type StyleContext
   = { provider :: StyleProvider
     , consumer :: StyleConsumer 
-    , noChildren :: NoChildren 
-    , withChildren :: WithChildren 
+    , elements :: StyledElements
     }
 
-type NoChildren 
-  = forall props
-  .  { br :: CSSRuleSet props -> props -> React.ReactElement
-     , col :: CSSRuleSet props -> props -> React.ReactElement
-     , embed :: CSSRuleSet props -> props -> React.ReactElement
-     , hr :: CSSRuleSet props -> props -> React.ReactElement
-     , img :: CSSRuleSet props -> props -> React.ReactElement
-     , input :: CSSRuleSet props -> props -> React.ReactElement
-     , keygen :: CSSRuleSet props -> props -> React.ReactElement
-     , link :: CSSRuleSet props -> props -> React.ReactElement
-     , menuitem :: CSSRuleSet props -> props -> React.ReactElement
-     , meta :: CSSRuleSet props -> props -> React.ReactElement
-     , param :: CSSRuleSet props -> props -> React.ReactElement
-     , source :: CSSRuleSet props -> props -> React.ReactElement
-     , track :: CSSRuleSet props -> props -> React.ReactElement
-     , wbr :: CSSRuleSet props -> props -> React.ReactElement
+type StyledNoChildren styleProps
+   = CSSRuleSet styleProps 
+  -> styleProps 
+  -> Array Props.Props 
+  -> React.ReactElement
+
+type StyledWithChildren styleProps
+   = CSSRuleSet styleProps 
+  -> styleProps 
+  -> Array Props.Props 
+  -> Array React.ReactElement
+  -> React.ReactElement
+
+type StyledElements
+  = forall styleProps
+  .  { br       :: StyledNoChildren styleProps
+     , col      :: StyledNoChildren styleProps
+     , embed    :: StyledNoChildren styleProps
+     , hr       :: StyledNoChildren styleProps
+     , img      :: StyledNoChildren styleProps
+     , input    :: StyledNoChildren styleProps
+     , keygen   :: StyledNoChildren styleProps 
+     , link     :: StyledNoChildren styleProps
+     , menuitem :: StyledNoChildren styleProps
+     , meta     :: StyledNoChildren styleProps
+     , param    :: StyledNoChildren styleProps
+     , source   :: StyledNoChildren styleProps
+     , track    :: StyledNoChildren styleProps
+     , wbr      :: StyledNoChildren styleProps
+     , _data      :: StyledWithChildren styleProps 
+     , a          :: StyledWithChildren styleProps 
+     , abbr       :: StyledWithChildren styleProps
+     , address    :: StyledWithChildren styleProps
+     , article    :: StyledWithChildren styleProps
+     , aside      :: StyledWithChildren styleProps
+     , audio      :: StyledWithChildren styleProps
+     , b          :: StyledWithChildren styleProps
+     , bdi        :: StyledWithChildren styleProps
+     , bdo        :: StyledWithChildren styleProps
+     , big        :: StyledWithChildren styleProps
+     , blockquote :: StyledWithChildren styleProps
+     , body       :: StyledWithChildren styleProps
+     , button     :: StyledWithChildren styleProps
+     , canvas     :: StyledWithChildren styleProps
+     , caption    :: StyledWithChildren styleProps
+     , cite       :: StyledWithChildren styleProps
+     , code       :: StyledWithChildren styleProps
+     , colgroup   :: StyledWithChildren styleProps
+     , datalist   :: StyledWithChildren styleProps
+     , dd         :: StyledWithChildren styleProps
+     , del        :: StyledWithChildren styleProps
+     , details    :: StyledWithChildren styleProps
+     , dfn        :: StyledWithChildren styleProps
+     , dialog     :: StyledWithChildren styleProps
+     , div        :: StyledWithChildren styleProps
+     , dl         :: StyledWithChildren styleProps
+     , dt         :: StyledWithChildren styleProps
+     , em         :: StyledWithChildren styleProps
+     , fieldset   :: StyledWithChildren styleProps
+     , figcaption :: StyledWithChildren styleProps
+     , figure     :: StyledWithChildren styleProps
+     , footer     :: StyledWithChildren styleProps
+     , form       :: StyledWithChildren styleProps
+     , h1         :: StyledWithChildren styleProps
+     , h2         :: StyledWithChildren styleProps
+     , h3         :: StyledWithChildren styleProps
+     , h4         :: StyledWithChildren styleProps
+     , h5         :: StyledWithChildren styleProps
+     , h6         :: StyledWithChildren styleProps
+     , head       :: StyledWithChildren styleProps
+     , header     :: StyledWithChildren styleProps
+     , html       :: StyledWithChildren styleProps
+     , i          :: StyledWithChildren styleProps
+     , iframe     :: StyledWithChildren styleProps
+     , ins        :: StyledWithChildren styleProps
+     , kbd        :: StyledWithChildren styleProps
+     , label      :: StyledWithChildren styleProps
+     , legend     :: StyledWithChildren styleProps
+     , li         :: StyledWithChildren styleProps
+     , main       :: StyledWithChildren styleProps
+     , map        :: StyledWithChildren styleProps
+     , mark       :: StyledWithChildren styleProps
+     , menu       :: StyledWithChildren styleProps
+     , meter      :: StyledWithChildren styleProps
+     , nav        :: StyledWithChildren styleProps
+     , noscript   :: StyledWithChildren styleProps
+     , object     :: StyledWithChildren styleProps
+     , ol         :: StyledWithChildren styleProps
+     , optgroup   :: StyledWithChildren styleProps
+     , option     :: StyledWithChildren styleProps
+     , output     :: StyledWithChildren styleProps
+     , p          :: StyledWithChildren styleProps
+     , picture    :: StyledWithChildren styleProps
+     , pre        :: StyledWithChildren styleProps
+     , progress   :: StyledWithChildren styleProps
+     , q          :: StyledWithChildren styleProps
+     , rp         :: StyledWithChildren styleProps
+     , rt         :: StyledWithChildren styleProps
+     , ruby       :: StyledWithChildren styleProps
+     , s          :: StyledWithChildren styleProps
+     , samp       :: StyledWithChildren styleProps
+     , script     :: StyledWithChildren styleProps
+     , section    :: StyledWithChildren styleProps
+     , select     :: StyledWithChildren styleProps
+     , small      :: StyledWithChildren styleProps
+     , span       :: StyledWithChildren styleProps
+     , strong     :: StyledWithChildren styleProps
+     , style      :: StyledWithChildren styleProps
+     , sub        :: StyledWithChildren styleProps
+     , summary    :: StyledWithChildren styleProps
+     , sup        :: StyledWithChildren styleProps
+     , table      :: StyledWithChildren styleProps
+     , tbody      :: StyledWithChildren styleProps
+     , td         :: StyledWithChildren styleProps
+     , textarea   :: StyledWithChildren styleProps
+     , tfoot      :: StyledWithChildren styleProps
+     , th         :: StyledWithChildren styleProps
+     , thead      :: StyledWithChildren styleProps
+     , time       :: StyledWithChildren styleProps
+     , title      :: StyledWithChildren styleProps
+     , tr         :: StyledWithChildren styleProps
+     , u          :: StyledWithChildren styleProps
+     , ul         :: StyledWithChildren styleProps
+     , var        :: StyledWithChildren styleProps
+     , video      :: StyledWithChildren styleProps
      }
 
-type WithChildren
-    = forall props
-    . { _data :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , a :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , abbr :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , address :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , article :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , aside :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , audio :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , b :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , bdi :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , bdo :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , big :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , blockquote :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , body :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , button :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , canvas :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , caption :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , cite :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , code :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , colgroup :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , datalist :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , dd :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , del :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , details :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , dfn :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , dialog :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , div :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , dl :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , dt :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , em :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , fieldset :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , figcaption :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , figure :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , footer :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , form :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , h1 :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , h2 :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , h3 :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , h4 :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , h5 :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , h6 :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , head :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , header :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , html :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , i :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , iframe :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , ins :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , kbd :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , label :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , legend :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , li :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , main :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , map :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , mark :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , menu :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , meter :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , nav :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , noscript :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , object :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , ol :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , optgroup :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , option :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , output :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , p :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , picture :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , pre :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , progress :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , q :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , rp :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , rt :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , ruby :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , s :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , samp :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , script :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , section :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , select :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , small :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , span :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , strong :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , style :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , sub :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , summary :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , sup :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , table :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , tbody :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , td :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , textarea :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , tfoot :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , th :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , thead :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , time :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , title :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , tr :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , u :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , ul :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , var :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      , video :: CSSRuleSet props -> props -> Array React.ReactElement -> React.ReactElement
-      }

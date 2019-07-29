@@ -1,4 +1,5 @@
-module React.Stylesheet (module Internal) where
+module React.Stylesheet (module Internal, module Stylesheet) where
 
-import React.Stylesheet.Internal.Types as Internal
-import React.Stylesheet.Internal.StyleContext as Internal
+import React.Stylesheet.Internal.Types (StyleConsumer, StyleContext, StyleProvider, StyleRenderMethod, StyledElements, StyledNoChildren, StyledWithChildren) as Internal
+import React.Stylesheet.Internal.StyleContext (createStyleContext) as Internal
+import Stylesheet (CSSRule(..), CSSRuleSet(..), CSSSelector(..), CSSText(..), ClassRule(..), InsertMediaRule(..), InsertRule(..), MediaQueryText(..), MediaRule(..), RuleType(..), StyleRuleSet(..), Stylesheet(..), StylesheetId(..), UnpackedMediaRule, UnpackedRule, VirtualStylesheet(..), addStyle, classRule, createAndReturnCSSMediaRule, createBlankStylesheet, createHashedInsertRule, createStyleTag, findMediaQueryByQuery, findRuleBySelector, fun, getCSSStylesheet, getClasses, getFilteredRuleList, getMediaRuleMediaText, getStyleRuleDeclarationText, getStyleRuleSelectorText, getStylesheetId, getUnpackedMediaRules, getUnpackedStyleRules, insertRecursive, insertRule, keep, media, mediaRule, processStyle, readVirtualStylesheet, str, unpackMediaRule, unpackRule, wrapInRuleSet) as Stylesheet
