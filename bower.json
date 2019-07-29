@@ -1,0 +1,29 @@
+{
+  "name": "purescript-react-stylesheet",
+  "description": "Purs-in-CSS solution for Purescript React",
+  "main": "",
+  "authors": [
+    "Daniel Harvey <danieljamesharvey@gmail.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "CSS"
+  ],
+  "homepage": "https://github.com/danieljharvey/purescript-react-stylesheet",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "purescript-effect": "^2.0.1",
+    "purescript-console": "^4.2.0",
+    "purescript-react": "^7.0.1",
+    "purescript-cssom": "^0.0.2",
+    "purescript-stylesheet": "^0.0.1",
+    "purescript-arrays": "^5.3.0",
+    "purescript-unordered-collections": "purescript-unordered-containers#^1.8.2"
+  }
+}

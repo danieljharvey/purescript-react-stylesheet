@@ -12,7 +12,7 @@ let additions =
         [ "effect", "console" ]
         "https://github.com/danieljharvey/purescript-cssom.git"
         "v0.0.2"
-    , styling =
+    , stylesheet =
         mkPackage
         [ "console"
         , "debug"

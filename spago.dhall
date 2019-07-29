@@ -3,9 +3,9 @@ Welcome to a Spago project!
 You can edit this file as you like.
 -}
 { name =
-    "my-project"
+    "react-stylesheet"
 , dependencies =
-    [ "effect", "console", "psci-support", "react", "cssom", "styling" ]
+    [ "effect", "console", "psci-support", "react", "cssom", "stylesheet" ]
 , packages =
     ./packages.dhall
 }
